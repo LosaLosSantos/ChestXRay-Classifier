@@ -1,37 +1,60 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/4PocFZrV)
+# **NIH Chest X-ray Dataset Analysis and Classification**
 
-Loris Salsi / 287715@student.pwr.edu.pl
+This repository contains a project focused on the classification of chest X-ray images using a subset of the **National Institutes of Health (NIH) Chest X-ray Dataset**. The primary objective is **binary classification** to detect the presence of **Infiltration** using both **TensorFlow/Keras** and **PyTorch** frameworks.
 
-# NIH Chest X-ray Dataset Analysis and Classification
+## **Dataset Overview**
 
-This repository contains a project focused on the classification of chest X-ray images using the Random Sample of NIH Chest X-ray Dataset, a subset of the National Institutes of Health (NIH) Chest X-ray Dataset. The dataset includes 5,606 images labeled for various thoracic diseases, with a particular emphasis on Infiltration as the target class for binary classification. The project explores both TensorFlow/Keras and PyTorch frameworks for preprocessing, training, and evaluating machine learning models.
+### **Source**
+- **Dataset Name**: NIH Chest X-ray Dataset Sample  
+- **Dataset Size**: **112,120 images** (full dataset)  
+- **Resolution**: 1024×1024  
+- **Labels File**: `sample_labels.csv`  
+- **Link**: [Kaggle - NIH Chest X-ray Dataset Sample](https://www.kaggle.com/)  
 
-# Dataset Overview
+### **Classes**
+The dataset contains **15 classes** (14 diseases + 1 "No findings" class). In this project, we perform **binary classification**:  
+- **Class 1**: X-ray images labeled with **"Infiltration"**  
+- **Class 0**: All other images  
 
-## Source
-Dataset Name: NIH Chest X-ray Dataset Sample
-Dataset Size: 5% of the full NIH Chest X-ray Dataset
-Number of Images: 5,606 (1024 x 1024 resolution)
-Labels File: sample_labels.csv
-Link: Kaggle - NIH Chest X-ray Dataset Sample 
+## **Objectives**
+- Perform **binary classification** to predict whether an X-ray image indicates **Infiltration**.  
+- Address dataset imbalance using **data augmentation**.  
+- Compare model performance between **TensorFlow/Keras** and **PyTorch**.  
+- Optimize classification metrics such as **precision, recall, and F1-score**.  
 
-## Class Descriptions
-This dataset contains 15 classes (14 diseases and one for "No findings"). For this project, Infiltration is used as the target class for binary classification:
-Class 1: Images with "Infiltration"
-Class 0: All other images
+## **Model Architecture**
 
-# Objectives
+### **TensorFlow/Keras**
+- **Base Model**: **MobileNetV2** (pre-trained on ImageNet, frozen weights).  
+- **Feature extractor** includes:  
+  - `GlobalAveragePooling2D` or `GlobalMaxPooling2D`.  
+  - Dense layer with **64 units (ReLU activation)**.  
+  - Output layer with **1 unit (Sigmoid activation)**.  
+- **Optimizer**: Adam (`lr=0.001`).  
+- **Loss Function**: Binary Crossentropy.  
+- **Metrics**: Accuracy, Precision, Recall, F1-score.  
 
-- Perform binary classification to predict whether an X-ray image indicates Infiltration.
-- Address dataset imbalance using augmentation and other techniques.
-- Compare model performance across frameworks (TensorFlow/Keras and PyTorch).
-- Experiment with data augmentation to enhance classification performance.
+### **PyTorch**
+- **Base Model**: **MobileNetV2** (pre-trained on ImageNet, modified classification head).  
+- **Classifier replaced** with a **single logit output for binary classification**.  
+- **Loss Function**: BCEWithLogitsLoss.  
+- **Optimizer**: Adam (`lr=0.001`).  
 
-# Data Management
+## **Data Management**
+The dataset is **not included** in this repository due to its size and licensing restrictions. To replicate this project:  
+1. Download the dataset from Kaggle.  
+2. Upload it to **Google Drive**.  
+3. Update the dataset paths in the scripts to match your Drive structure.  
 
-The dataset used for this project, a random sample of the NIH Chest X-ray Dataset, is not included in the GitHub repository due to its size and licensing restrictions. Instead, the dataset was stored and accessed via Google Drive during the development phase using Google Colab.
+Model training was conducted on **Google Colab** with dataset access via Google Drive.
 
-If you wish to replicate this project:
-- Download the dataset from Kaggle.
-- Upload the dataset to your Google Drive.
-- Update the dataset paths in the scripts to match your Drive structure.
+## **Results and Performance**
+Final model accuracy ranges between **66-72%**, depending on the framework and applied optimizations.
+
+The **confusion matrix** and **ROC curve analysis** showed improvements in detecting the minority class after applying data augmentation.
+
+## **Conclusions**
+This project demonstrates a comparison between **TensorFlow/Keras** and **PyTorch** for deep learning-based **medical image classification**. Future improvements may include:  
+- **Advanced transfer learning techniques**.  
+- **Better dataset balancing strategies**.  
+- **Hyperparameter tuning for further performance gains**.  
