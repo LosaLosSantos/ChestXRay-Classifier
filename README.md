@@ -1,3 +1,7 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/4PocFZrV)
+
+Loris Salsi / 287715@student.pwr.edu.pl
+
 # NIH Chest X-ray Dataset Analysis and Classification
 
 This repository contains a project focused on the classification of chest X-ray images using the Random Sample of NIH Chest X-ray Dataset, a subset of the National Institutes of Health (NIH) Chest X-ray Dataset. The dataset includes 5,606 images labeled for various thoracic diseases, with a particular emphasis on Infiltration as the target class for binary classification. The project explores both TensorFlow/Keras and PyTorch frameworks for preprocessing, training, and evaluating machine learning models.
